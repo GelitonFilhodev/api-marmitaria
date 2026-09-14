@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { OrdersController } from './orders/order.controller.js';
+import { OrderRepositoryMemory } from './orders/infrastructure/OrderRepositoryMemory.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -15,7 +17,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'api-marmitaria',
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, OrdersController],
+  providers: [AppService, OrderRepositoryMemory],
 })
 export class AppModule {}
